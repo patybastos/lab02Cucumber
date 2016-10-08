@@ -16,7 +16,7 @@ public class Operacoes {
 		
 	}
 	
-	public String buscarEndereco(int cep)
+	public String buscarEndereco(String cep)
 	{
 		return "";
 	}

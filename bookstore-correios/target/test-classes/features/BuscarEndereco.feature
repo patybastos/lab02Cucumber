@@ -4,8 +4,8 @@ Feature: Buscar Endereco
 
 @tag1
 Scenario Outline: Buscar Endereco atraves do CEP
-Given o cep <cep>
-When Nós buscamos o endereco
+Given o servico de busca de endereco
+When buscamos o cep <cep>
 Then retorna o endereco <endereco>
 
 Examples:

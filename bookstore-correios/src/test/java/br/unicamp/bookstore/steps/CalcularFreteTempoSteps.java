@@ -26,24 +26,6 @@ public class CalcularFreteTempoSteps {
 	@Rule
 	public WireMockRule wireMockRule = new WireMockRule(8089);
 	
-	@Test
-	public void buscarEndereco(String cep) {
-	    stubFor(get(urlEqualTo("viacep.com.br/ws" + cep))
-	            .withHeader("Accept", equalTo("text/json"))
-	            .willReturn(aResponse()
-	                .withStatus(200)
-	                .withHeader("Content-Type", "text/json")
-	                .withBody("<response>Some content</response>")));
-
-	    //Result result = myHttpServiceCallingObject.doSomething();
-
-	    //assertTrue(result.wasSuccessFul());
-
-	    verify(postRequestedFor(urlMatching("/my/resource/[a-z0-9]+"))
-	            .withRequestBody(matching(".*<message>1234</message>.*"))
-	            .withHeader("Content-Type", notMatching("application/json")));
-	}
-	
 	@Given("^os dados do produto como peso (\\d+) altura (\\d+) largura (\\d+) comprimento (\\d+) tipo de entrega (\\d+) e cep (\\d+)$")
 	public void given() throws Throwable {
 		MockitoAnnotations.initMocks(this);

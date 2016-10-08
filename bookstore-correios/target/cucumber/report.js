@@ -1,4 +1,4 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("features/CalcularFreteTempo.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("features/BuscarEndereco.feature");
 formatter.feature({
   "comments": [
     {
@@ -7,9 +7,9 @@ formatter.feature({
     }
   ],
   "line": 3,
-  "name": "Calcular frete e tempo de entrega",
+  "name": "Buscar Endereco",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega",
+  "id": "buscar-endereco",
   "keyword": "Feature",
   "tags": [
     {
@@ -20,9 +20,9 @@ formatter.feature({
 });
 formatter.scenarioOutline({
   "line": 6,
-  "name": "Calcular frete e tempo de entrega",
+  "name": "Buscar Endereco atraves do CEP",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega",
+  "id": "buscar-endereco;buscar-endereco-atraves-do-cep",
   "type": "scenario_outline",
   "keyword": "Scenario Outline",
   "tags": [
@@ -34,65 +34,53 @@ formatter.scenarioOutline({
 });
 formatter.step({
   "line": 7,
-  "name": "os dados do produto como peso \u003cpeso\u003e altura \u003caltura\u003e largura \u003clargura\u003e comprimento \u003ccomprimento\u003e tipo de entrega \u003ctipoEntrega\u003e e cep \u003ccep\u003e",
+  "name": "o servico de busca de endereco",
   "keyword": "Given "
 });
 formatter.step({
   "line": 8,
-  "name": "N�s buscamos o frete e tempo de entrega",
+  "name": "buscamos o cep \u003ccep\u003e",
   "keyword": "When "
 });
 formatter.step({
   "line": 9,
-  "name": "retorna o \u003cfrete\u003e e \u003ctempo\u003e da entrega",
+  "name": "retorna o endereco \u003cendereco\u003e",
   "keyword": "Then "
 });
 formatter.examples({
   "line": 11,
   "name": "",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega;",
+  "id": "buscar-endereco;buscar-endereco-atraves-do-cep;",
   "rows": [
     {
       "cells": [
-        "peso",
-        "altura",
-        "largura",
-        "comprimento",
-        "tipoEntrega",
         "cep",
-        "frete",
-        "tempo"
+        "endereco"
       ],
       "line": 12,
-      "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega;;1"
+      "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;1"
     },
     {
       "cells": [
-        "5",
-        "1",
-        "2",
-        "5",
-        "PAC",
-        "13236080",
-        "10",
-        "3"
+        "13083130",
+        "Rua Macedo Soares, 174"
       ],
       "line": 13,
-      "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega;;2"
+      "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;2"
     }
   ],
   "keyword": "Examples"
 });
 formatter.before({
-  "duration": 30426921,
+  "duration": 159383,
   "status": "passed"
 });
 formatter.scenario({
   "line": 13,
-  "name": "Calcular frete e tempo de entrega",
+  "name": "Buscar Endereco atraves do CEP",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega;;2",
+  "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;2",
   "type": "scenario",
   "keyword": "Scenario Outline",
   "tags": [
@@ -108,28 +96,22 @@ formatter.scenario({
 });
 formatter.step({
   "line": 7,
-  "name": "os dados do produto como peso 5 altura 1 largura 2 comprimento 5 tipo de entrega PAC e cep 13236080",
-  "matchedColumns": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5
-  ],
+  "name": "o servico de busca de endereco",
   "keyword": "Given "
 });
 formatter.step({
   "line": 8,
-  "name": "N�s buscamos o frete e tempo de entrega",
+  "name": "buscamos o cep 13083130",
+  "matchedColumns": [
+    0
+  ],
   "keyword": "When "
 });
 formatter.step({
   "line": 9,
-  "name": "retorna o 10 e 3 da entrega",
+  "name": "retorna o endereco Rua Macedo Soares, 174",
   "matchedColumns": [
-    6,
-    7
+    1
   ],
   "keyword": "Then "
 });
