@@ -1,130 +1,55 @@
 $(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("features/BuscarEndereco.feature");
 formatter.feature({
-  "comments": [
-    {
-      "line": 1,
-      "value": "#Sample Feature Definition Template"
-    }
-  ],
-  "line": 3,
+  "line": 1,
   "name": "Buscar Endereco",
   "description": "",
   "id": "buscar-endereco",
-  "keyword": "Feature",
-  "tags": [
-    {
-      "line": 2,
-      "name": "@tag"
-    }
-  ]
-});
-formatter.scenarioOutline({
-  "line": 6,
-  "name": "Buscar Endereco atraves do CEP",
-  "description": "",
-  "id": "buscar-endereco;buscar-endereco-atraves-do-cep",
-  "type": "scenario_outline",
-  "keyword": "Scenario Outline",
-  "tags": [
-    {
-      "line": 5,
-      "name": "@tag1"
-    }
-  ]
-});
-formatter.step({
-  "line": 7,
-  "name": "o servico de busca de endereco",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 8,
-  "name": "buscamos o cep \u003ccep\u003e",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 9,
-  "name": "retorna o endereco \u003cendereco\u003e",
-  "keyword": "Then "
-});
-formatter.examples({
-  "line": 11,
-  "name": "",
-  "description": "",
-  "id": "buscar-endereco;buscar-endereco-atraves-do-cep;",
-  "rows": [
-    {
-      "cells": [
-        "cep",
-        "endereco"
-      ],
-      "line": 12,
-      "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;1"
-    },
-    {
-      "cells": [
-        "13083130",
-        "Rua Macedo Soares, 174"
-      ],
-      "line": 13,
-      "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;2"
-    }
-  ],
-  "keyword": "Examples"
+  "keyword": "Feature"
 });
 formatter.before({
-  "duration": 159383,
+  "duration": 533677052,
+  "status": "passed"
+});
+formatter.before({
+  "duration": 990102,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 13,
+  "line": 3,
   "name": "Buscar Endereco atraves do CEP",
   "description": "",
-  "id": "buscar-endereco;buscar-endereco-atraves-do-cep;;2",
+  "id": "buscar-endereco;buscar-endereco-atraves-do-cep",
   "type": "scenario",
-  "keyword": "Scenario Outline",
-  "tags": [
-    {
-      "line": 2,
-      "name": "@tag"
-    },
-    {
-      "line": 5,
-      "name": "@tag1"
-    }
-  ]
+  "keyword": "Scenario"
 });
 formatter.step({
-  "line": 7,
+  "line": 4,
   "name": "o servico de busca de endereco",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 8,
-  "name": "buscamos o cep 13083130",
-  "matchedColumns": [
-    0
-  ],
+  "line": 5,
+  "name": "buscamos o cep 01001000",
   "keyword": "When "
 });
 formatter.step({
-  "line": 9,
-  "name": "retorna o endereco Rua Macedo Soares, 174",
-  "matchedColumns": [
-    1
-  ],
+  "line": 6,
+  "name": "retorna o endereco",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "BuscarEnderecoSteps.o_servico_de_busca_de_endereco()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 390336846,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
+formatter.match({
+  "arguments": [
+    {
+      "val": "01001000",
+      "offset": 15
+    }
+  ],
+  "location": "BuscarEnderecoSteps.when(String)"
 });
