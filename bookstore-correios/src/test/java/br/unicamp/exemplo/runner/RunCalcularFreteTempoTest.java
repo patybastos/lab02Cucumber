@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = { "pretty", "html:target/cucumber" },
-        glue = "br.unicamp.exemplo.steps",
+        glue = "br.unicamp.bookstore.steps",
         features = "classpath:features/CalcularFreteTempo.feature"
 )
 

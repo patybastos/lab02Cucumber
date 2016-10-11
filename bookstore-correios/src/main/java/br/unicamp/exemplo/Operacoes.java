@@ -6,6 +6,10 @@ public class Operacoes {
 	
 	public DadosDeEntregaDAO dao;
 	
+	public Operacoes(){
+		
+	}
+	
 	public Operacoes(DadosDeEntregaDAO dao){
 		this.dao = dao;
 	}

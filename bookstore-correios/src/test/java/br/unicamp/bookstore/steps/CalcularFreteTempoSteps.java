@@ -6,17 +6,13 @@ import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
-import org.junit.Rule;
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Any;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 import br.unicamp.bookstore.dao.DadosDeEntregaDAO;
 import br.unicamp.exemplo.Operacoes;
@@ -32,11 +28,12 @@ public class CalcularFreteTempoSteps {
 		operacoes = new Operacoes(mock);
 	}
 	
-	@Given("^os dados do produto como peso (\\d+) altura (\\d+) largura (\\d+) comprimento (\\d+) tipo de entrega (\\d+) e cep (\\d+)$")
+	@Given("^o servico de busca de frete e tempo de entrega$")
 	public void given() throws Throwable {
+		assertNotNull(operacoes);
 	}
 
-  @When("^Nós buscamos o frete e tempo de entrega$")
+  @When("^os dados do produto como peso (\\d+) altura (\\d+) largura (\\d+) comprimento (\\d+) tipo de entrega (\\d+) e cep (\\d+) retorna o (\\d+) e (\\d+) da entrega$")
   public void when() throws Throwable {
 		//urlMatching
 	    stubFor(get(urlEqualTo("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx"))
@@ -49,11 +46,9 @@ public class CalcularFreteTempoSteps {
 	    while(1==1);
   }
 
-  /*
-  @Then(^you are in Then annotation$)
+  @Then("^o resultado foi salvo na base$")
   public void then() throws Throwable {
 	  Mockito.verify(mock, times(1)).saveDadosDeEntrega(10.0, 5);
   }
-  */
 
 }

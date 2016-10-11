@@ -7,11 +7,11 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 533677052,
+  "duration": 2667843,
   "status": "passed"
 });
 formatter.before({
-  "duration": 990102,
+  "duration": 138320049,
   "status": "passed"
 });
 formatter.scenario({
@@ -41,7 +41,7 @@ formatter.match({
   "location": "BuscarEnderecoSteps.o_servico_de_busca_de_endereco()"
 });
 formatter.result({
-  "duration": 390336846,
+  "duration": 123271094,
   "status": "passed"
 });
 formatter.match({

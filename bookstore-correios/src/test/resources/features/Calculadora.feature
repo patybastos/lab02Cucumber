@@ -15,9 +15,9 @@ Scenario Outline: Multiply two numbers
 	
 	Examples: 
 		| firstNumber | secondNumber | result |
-		|	1           |	0			       |  0     |
-		|	2		        |	2			       |  4     |
-		|	3		        |	10	    		 |  30    |
+		|	1         |	0			 |  0     |
+		|	2		  |	2			 |  4     |
+		|	3		  |	10	         |  30    |
 		
 Scenario: Division by zero 
 	Given I have a calculator 
