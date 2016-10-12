@@ -1,13 +1,6 @@
-#Sample Feature Definition Template
-@tag
 Feature: Calcular frete e tempo de entrega
 
-@tag1
-Scenario Outline: Calcular frete e tempo de entrega
-Given o servico de busca de frete e tempo de entrega 
-When os dados do produto como peso <peso> altura <altura> largura <largura> comprimento <comprimento> tipo de entrega <tipoEntrega> e cep <cep> retorna o <frete> e <tempo> da entrega
+Scenario: Calcular frete e tempo de entrega
+Given o servico de busca de frete e tempo de entrega
+When os dados do produto como peso 1 comprimento 20 altura 5 largura 12 tipo entrega 41106
 Then o resultado foi salvo na base
-
-Examples:
-    | peso  | altura | largura | comprimento | tipoEntrega |      cep | frete | tempo |
-    |     5 |      1 |       2 |           5 |         PAC | 13236080 |    10 |     3 |
