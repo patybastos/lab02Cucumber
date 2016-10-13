@@ -1,7 +1,9 @@
 package br.unicamp.exemplo;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -9,6 +11,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 
 import br.unicamp.bookstore.dao.DadosDeEntregaDAO;
 
@@ -36,7 +41,16 @@ public class Operacoes {
 		HttpResponse response = client.execute(request);
 
 		String responseAsString = EntityUtils.toString(response.getEntity());
-	
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		
+		Document document = builder.parse(new InputSource(new StringReader(responseAsString)));
+		
+		Element rootElement = document.getDocumentElement();
+		
+		String a = rootElement.getAttribute("Valor");
+		
 		//String preco = response.getFirstHeader("Valor").getValue();
 		//String prazo = response.getFirstHeader("PrazoEntrega").getValue();
 		
@@ -56,16 +70,6 @@ public class Operacoes {
 		request.addHeader("Content-Type", "application/json");
 
 		HttpResponse response = client.execute(request);
-		
-		/*BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-	
-		StringBuffer result = new StringBuffer();
-		String line = "";
-		while ((line = rd.readLine()) != null) {
-			result.append(line);
-		}
-		
-		resultadoEndereco = result.toString();*/
 		
 		resultadoEndereco = EntityUtils.toString(response.getEntity());
 	}

@@ -37,11 +37,11 @@ public class CalcularFreteTempoSteps {
   public void when(Integer peso, Integer comprimento, Integer altura, Integer largura, Integer tipoEntrega) throws Throwable {
 	  	stubFor(get(urlMatching("/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo.*"))
 	    		.withQueryParam("nVlPeso", WireMock.equalTo(peso.toString()))
-	    		.withQueryParam("nVlComprimento", WireMock.equalTo(comprimento.toString()))
+/*	    		.withQueryParam("nVlComprimento", WireMock.equalTo(comprimento.toString()))
 	    		.withQueryParam("nnVlAltura", WireMock.equalTo(altura.toString()))
 	    		.withQueryParam("nVlLargura", WireMock.equalTo(largura.toString()))	    		
 	    		.withQueryParam("nCdServico", WireMock.equalTo("41106"))
-	    		
+*/	    		
 	            .willReturn(aResponse()
 	                .withStatus(200)
 	                .withHeader("Content-Type", "application/xml")

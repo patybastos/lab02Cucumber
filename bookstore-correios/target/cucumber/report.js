@@ -1,71 +1,77 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("features/CalcularFreteTempo.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("features/BuscarEndereco.feature");
 formatter.feature({
   "line": 1,
-  "name": "Calcular frete e tempo de entrega",
+  "name": "Buscar Endereco",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega",
+  "id": "buscar-endereco",
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 6486979,
+  "duration": 2280253,
   "status": "passed"
 });
 formatter.before({
-  "duration": 179114885,
+  "duration": 149173959,
+  "status": "passed"
+});
+formatter.before({
+  "duration": 67013,
   "status": "passed"
 });
 formatter.scenario({
   "line": 3,
-  "name": "Calcular frete e tempo de entrega",
+  "name": "Buscar Endereco atraves do CEP",
   "description": "",
-  "id": "calcular-frete-e-tempo-de-entrega;calcular-frete-e-tempo-de-entrega",
+  "id": "buscar-endereco;buscar-endereco-atraves-do-cep",
   "type": "scenario",
   "keyword": "Scenario"
 });
 formatter.step({
   "line": 4,
-  "name": "o servico de busca de frete e tempo de entrega",
+  "name": "o servico de busca de endereco",
   "keyword": "Given "
 });
 formatter.step({
   "line": 5,
-  "name": "os dados do produto como peso 1 comprimento 20 altura 5 largura 12 tipo entrega 41106",
+  "name": "buscamos o cep 01001000",
   "keyword": "When "
 });
 formatter.step({
   "line": 6,
-  "name": "o resultado foi salvo na base",
+  "name": "retorna o endereco {\"cep\": \"01001-000\",\"logradouro\": \"Praca da Se\",\"complemento\": \"lado impar\",\"bairro\": \"Se\",\"localidade\": \"Sao Paulo\",\"uf\": \"SP\",\"unidade\": \"\",\"ibge\": \"3550308\",\"gia\": \"1004\"}",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "CalcularFreteTempoSteps.given()"
+  "location": "BuscarEnderecoSteps.o_servico_de_busca_de_endereco()"
 });
 formatter.result({
-  "duration": 134038681,
+  "duration": 119562061,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "1",
-      "offset": 30
-    },
-    {
-      "val": "20",
-      "offset": 44
-    },
-    {
-      "val": "5",
-      "offset": 54
-    },
-    {
-      "val": "12",
-      "offset": 64
-    },
-    {
-      "val": "41106",
-      "offset": 80
+      "val": "01001000",
+      "offset": 15
     }
   ],
-  "location": "CalcularFreteTempoSteps.when(Integer,Integer,Integer,Integer,Integer)"
+  "location": "BuscarEnderecoSteps.buscamos_o_cep(String)"
+});
+formatter.result({
+  "duration": 548041379,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "{\"cep\": \"01001-000\",\"logradouro\": \"Praca da Se\",\"complemento\": \"lado impar\",\"bairro\": \"Se\",\"localidade\": \"Sao Paulo\",\"uf\": \"SP\",\"unidade\": \"\",\"ibge\": \"3550308\",\"gia\": \"1004\"}",
+      "offset": 19
+    }
+  ],
+  "location": "BuscarEnderecoSteps.then(String)"
+});
+formatter.result({
+  "duration": 98407,
+  "status": "passed"
+});
 });
