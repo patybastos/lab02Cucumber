@@ -40,21 +40,8 @@ public class BuscarEnderecoSteps {
 	    //while(1==1);
 	}
 
-/*	@When("^buscamos o cep alfanumero (\\d+)$")
-	public void buscamos_o_cep_alfanumero(String cep) throws Throwable {
-
-	    stubFor(get(urlEqualTo("/viacep/ws/" + cep + "/json/"))
-	            .willReturn(aResponse()
-	                .withStatus(400)
-	                .withHeader("Content-Type", "application/json")
-	                .withBody("{\"erro\":\"true\"")));
-	    
-	    operacoes.buscarEndereco(cep);
-	    //while(1==1);
-	}*/
-	
 	@Then("^retorna o endereco (.*)$")
-	public void then(String endereco) throws Throwable {
+	public void retorna_o_endereco(String endereco) throws Throwable {
 		/*verify(1,postRequestedFor(urlMatching("/viacep/ws/01001000/json/"))
 	            .withRequestBody(matching("{\"cep\": \"01001-000\",\"logradouro\": \"Praça da Sé\",\"complemento\": \"lado ímpar\",\"bairro\": \"Sé\",\"localidade\": \"São Paulo\",\"uf\": \"SP\",\"unidade\": \"\",\"ibge\": \"3550308\",\"gia\": \"1004\"}"))
 	            .withHeader("Content-Type", notMatching("application/json"))
@@ -66,5 +53,24 @@ public class BuscarEnderecoSteps {
 		assertEquals(endereco, operacoes.getResultadoEndereco());
 		
 	}
+	
+	@When("^buscamos o cep alfanumerico (.*)$")
+	public void buscamos_o_cep_alfanumero(String cep) throws Throwable {
+
+	    stubFor(get(urlEqualTo("/viacep/ws/" + cep + "/json/"))
+	            .willReturn(aResponse()
+	                .withStatus(400)
+	                .withHeader("Content-Type", "application/json")
+	                .withBody("{\"erro\":\"true\"}")));
+	    
+	    operacoes.buscarEndereco(cep);
+	    //while(1==1);
+	}
+	
+	@Then("^retorna a mensagem de erro (.*)$")
+	public void retorna_a_mensagem_de_erro(String mensagem)throws Throwable{
+		assertEquals(mensagem, operacoes.getResultadoEndereco());
+	}
+	
 
 }

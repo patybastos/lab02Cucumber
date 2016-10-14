@@ -1,14 +1,19 @@
 package br.unicamp.bookstore.steps;
 
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
+
+import static org.junit.Assert.assertEquals;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
+import static org.mockito.Matchers.anyDouble;
+import static org.mockito.Matchers.anyInt;
 
 import org.mockito.Mockito;
 
@@ -37,11 +42,11 @@ public class CalcularFreteTempoSteps {
   public void when(Integer peso, Integer comprimento, Integer altura, Integer largura, Integer tipoEntrega) throws Throwable {
 	  	stubFor(get(urlMatching("/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo.*"))
 	    		.withQueryParam("nVlPeso", WireMock.equalTo(peso.toString()))
-/*	    		.withQueryParam("nVlComprimento", WireMock.equalTo(comprimento.toString()))
-	    		.withQueryParam("nnVlAltura", WireMock.equalTo(altura.toString()))
+	    		.withQueryParam("nVlComprimento", WireMock.equalTo(comprimento.toString()))
+	    		.withQueryParam("nVlAltura", WireMock.equalTo(altura.toString()))
 	    		.withQueryParam("nVlLargura", WireMock.equalTo(largura.toString()))	    		
 	    		.withQueryParam("nCdServico", WireMock.equalTo("41106"))
-*/	    		
+	    		
 	            .willReturn(aResponse()
 	                .withStatus(200)
 	                .withHeader("Content-Type", "application/xml")
@@ -51,10 +56,15 @@ public class CalcularFreteTempoSteps {
 	    
 	    //while(1==1);
   }
+  
+  @Then("^retorna o valor de (\\d+) e prazo de (\\d+) dias$")
+  public void retorna_o_valor_e_prazo(){
+	  //assertEquals();
+  }
 
-  @Then("^o resultado foi salvo na base$")
-  public void then() throws Throwable {
-	  Mockito.verify(mock, times(1)).saveDadosDeEntrega(10.0, 5);
+  @And("^o resultado foi salvo no banco$")
+  public void o_resultado_foi_salvo_no_banco() throws Throwable {
+	  Mockito.verify(mock, times(1)).saveDadosDeEntrega(anyDouble(), anyInt());
   }
 
 }
