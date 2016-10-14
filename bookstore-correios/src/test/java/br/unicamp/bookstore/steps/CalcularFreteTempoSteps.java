@@ -67,5 +67,29 @@ public class CalcularFreteTempoSteps {
   public void o_resultado_foi_salvo_no_banco() throws Throwable {
 	  Mockito.verify(mock, times(1)).saveDadosDeEntrega(anyDouble(), anyInt());
   }
+  
+  @When("^os dados do produto como peso (\\d+) comprimento (\\d+) altura (\\d+) largura (\\d+) tipo entrega (\\d+)$")
+  public void when_com_peso_excedido(Integer peso, Integer comprimento, Integer altura, Integer largura, Integer tipoEntrega) throws Throwable {
+	  	stubFor(get(urlMatching("/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo.*"))
+	    		.withQueryParam("nVlPeso", WireMock.equalTo(peso.toString()))
+	    		.withQueryParam("nVlComprimento", WireMock.equalTo(comprimento.toString()))
+	    		.withQueryParam("nVlAltura", WireMock.equalTo(altura.toString()))
+	    		.withQueryParam("nVlLargura", WireMock.equalTo(largura.toString()))	    		
+	    		.withQueryParam("nCdServico", WireMock.equalTo("41106"))
+	    		
+	            .willReturn(aResponse()
+	                .withStatus(200)
+	                .withHeader("Content-Type", "application/xml")
+	                .withBody("<?xml version=\"1.0\" encoding=\"utf-8\"?><cResultado xmlns=\"http://tempuri.org/\"><Servicos><cServico><Codigo>41106</Codigo><Erro>-4</Erro><MsgErro>Peso excedido</MsgErro></cServico></Servicos></cResultado>")));
+	    
+	  	operacoes.calcularFreteTempo(peso, altura, largura, comprimento, tipoEntrega, 123);
+	    
+	    //while(1==1);
+  }
+  
+  @Then("^retorna erro (.*)$")
+  public void retorna_erro(String erro){
+	  assertEquals(erro, operacoes.getPreco());
+  }
 
 }

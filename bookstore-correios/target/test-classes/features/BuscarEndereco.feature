@@ -8,7 +8,7 @@ Feature: Buscar Endereco
 	Scenario: Buscar Endereco com CEP errado
 		Given o servico de busca de endereco
 		When buscamos o cep alfanumerico ABC12345
-		Then retorna a mensagem de erro {"erro":"true"}
+		Then retorna a mensagem de erro {"erro":"400"}
 		
 	Scenario: Buscar Endereco com servico offline
 		Given o servico de busca de endereco

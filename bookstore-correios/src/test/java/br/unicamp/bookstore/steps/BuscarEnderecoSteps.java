@@ -2,6 +2,9 @@ package br.unicamp.bookstore.steps;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.mockito.Mockito.atLeastOnce;
+
+import com.github.tomakehurst.wiremock.http.Fault;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -61,7 +64,7 @@ public class BuscarEnderecoSteps {
 	            .willReturn(aResponse()
 	                .withStatus(400)
 	                .withHeader("Content-Type", "application/json")
-	                .withBody("{\"erro\":\"true\"}")));
+	                .withBody("{\"erro\":\"400\"}")));
 	    
 	    operacoes.buscarEndereco(cep);
 	    //while(1==1);
@@ -77,7 +80,7 @@ public class BuscarEnderecoSteps {
 
 	    stubFor(get(urlEqualTo("/viacep/ws/" + cep + "/json/"))
 	            .willReturn(aResponse()
-	                //.withFault(fault)
+	                .withFault(Fault.EMPTY_RESPONSE)
 	                .withHeader("Content-Type", "application/json")
 	                .withBody("{servico:offline}")));
 	    
