@@ -72,5 +72,20 @@ public class BuscarEnderecoSteps {
 		assertEquals(mensagem, operacoes.getResultadoEndereco());
 	}
 	
+	@When("^buscamos o cep (\\d+) com servico offline$")
+	public void buscamos_o_cep_com_servico_offline(String cep) throws Throwable {
 
+	    stubFor(get(urlEqualTo("/viacep/ws/" + cep + "/json/"))
+	            .willReturn(aResponse()
+	                //.withFault(fault)
+	                .withHeader("Content-Type", "application/json")
+	                .withBody("{servico:offline}")));
+	    
+	    operacoes.buscarEndereco(cep);
+	}
+
+	@Then("^retorna a mensagem (.*)$")
+	public void retorna_a_mensagem_de_servico_offline(String mensagem)throws Throwable{
+		assertEquals(mensagem, operacoes.getResultadoEndereco());
+	}
 }

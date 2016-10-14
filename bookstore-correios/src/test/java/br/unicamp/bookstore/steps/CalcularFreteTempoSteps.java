@@ -50,7 +50,7 @@ public class CalcularFreteTempoSteps {
 	            .willReturn(aResponse()
 	                .withStatus(200)
 	                .withHeader("Content-Type", "application/xml")
-	                .withBody("<?xml version=\"1.0\" encoding=\"utf-8\"?><cResultado xmlns=\"http://tempuri.org/\"><Servicos><cServico><Codigo>41106</Codigo><Valor>13,00</Valor><PrazoEntrega>2</PrazoEntrega><ValorMaoPropria>1</ValorMaoPropria><ValorAvisoRecebimento>1</ValorAvisoRecebimento><ValorValorDeclarado>13,00</ValorValorDeclarado><EntregaDomiciliar>true</EntregaDomiciliar><EntregaSabado>true</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro><ValorSemAdicionais>13,00</ValorSemAdicionais><obsFim>teste</obsFim></cServico></Servicos></cResultado>")));
+	                .withBody("<?xml version=\"1.0\" encoding=\"utf-8\"?><cResultado xmlns=\"http://tempuri.org/\"><Servicos><cServico><Codigo>41106</Codigo><Valor>13.00</Valor><PrazoEntrega>2</PrazoEntrega><ValorMaoPropria>1</ValorMaoPropria><ValorAvisoRecebimento>1</ValorAvisoRecebimento><ValorValorDeclarado>13,00</ValorValorDeclarado><EntregaDomiciliar>true</EntregaDomiciliar><EntregaSabado>true</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro><ValorSemAdicionais>13,00</ValorSemAdicionais><obsFim>teste</obsFim></cServico></Servicos></cResultado>")));
 	    
 	  	operacoes.calcularFreteTempo(peso, altura, largura, comprimento, tipoEntrega, 123);
 	    
@@ -58,8 +58,9 @@ public class CalcularFreteTempoSteps {
   }
   
   @Then("^retorna o valor de (\\d+) e prazo de (\\d+) dias$")
-  public void retorna_o_valor_e_prazo(){
-	  //assertEquals();
+  public void retorna_o_valor_e_prazo(Double valor, Integer prazo){
+	  assertEquals(valor, operacoes.getPreco());
+	  assertEquals(prazo, operacoes.getPrazo());
   }
 
   @And("^o resultado foi salvo no banco$")

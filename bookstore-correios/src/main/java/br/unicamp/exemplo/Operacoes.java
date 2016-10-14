@@ -2,6 +2,8 @@ package br.unicamp.exemplo;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,6 +37,9 @@ public class Operacoes {
 	
 	private String resultadoEndereco = "";
 	private String resultadoStatusEntrega = "";
+	private static List<String> listaTags;
+	private Double preco = 0.0;
+	private Integer prazo = 0;
 	
 	public Operacoes(){
 		
@@ -63,12 +68,14 @@ public class Operacoes {
 		
 		org.w3c.dom.Element rootElement = document.getDocumentElement();
 		
+		this.listaTags = new ArrayList<String>();
+		
 		iteraTags(rootElement);
 		
-		//String preco = response.getFirstHeader("Valor").getValue();
-		//String prazo = response.getFirstHeader("PrazoEntrega").getValue();
+		preco = Double.parseDouble(listaTags.get(3));
+		prazo = Integer.parseInt(listaTags.get(4));
 		
-		dao.saveDadosDeEntrega(10.0, 5);
+		dao.saveDadosDeEntrega(preco, prazo);
 	}
 	
 	public void consultarStatusEntrega(String codigoRastreio) throws Throwable
@@ -103,9 +110,16 @@ public class Operacoes {
 		return resultadoStatusEntrega;
 	}
 	
+	public Double getPreco(){
+		return preco;
+	}
+	
+	public Integer getPrazo(){
+		return prazo;
+	}
+	
 	public static void iteraTags(Node currentNode2) {
-	    // do something with the current node instead of System.out
-	    System.out.println(currentNode2.getNodeName());
+	    //System.out.println(currentNode2.getNodeName());
 
 	    NodeList nodeList = currentNode2.getChildNodes();
 	    
@@ -114,7 +128,8 @@ public class Operacoes {
 	    	
 	        if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 	        	
-	        	System.out.println(currentNode.getTextContent()); //mudar aqui pra pegar a variavel que quiser	
+	        	listaTags.add(currentNode.getTextContent());
+	        	//System.out.println(currentNode.getTextContent());	
 	        	
 	        	iteraTags(currentNode);
 	        }

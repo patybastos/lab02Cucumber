@@ -9,3 +9,8 @@ Feature: Buscar Endereco
 		Given o servico de busca de endereco
 		When buscamos o cep alfanumerico ABC12345
 		Then retorna a mensagem de erro {"erro":"true"}
+		
+	Scenario: Buscar Endereco com servico offline
+		Given o servico de busca de endereco
+		When buscamos o cep 01001000 com servico offline
+		Then retorna a mensagem {"servico":"offline"}

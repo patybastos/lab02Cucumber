@@ -7,15 +7,15 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 770174385,
+  "duration": 6156140,
   "status": "passed"
 });
 formatter.before({
-  "duration": 188965,
+  "duration": 376286453,
   "status": "passed"
 });
 formatter.before({
-  "duration": 278919,
+  "duration": 239677,
   "status": "passed"
 });
 formatter.scenario({
@@ -50,7 +50,7 @@ formatter.match({
   "location": "CalcularFreteTempoSteps.given()"
 });
 formatter.result({
-  "duration": 485919723,
+  "duration": 329364674,
   "status": "passed"
 });
 formatter.match({
@@ -77,4 +77,33 @@ formatter.match({
     }
   ],
   "location": "CalcularFreteTempoSteps.when(Integer,Integer,Integer,Integer,Integer)"
+});
+formatter.result({
+  "duration": 1985278874,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "13",
+      "offset": 19
+    },
+    {
+      "val": "2",
+      "offset": 33
+    }
+  ],
+  "location": "CalcularFreteTempoSteps.retorna_o_valor_e_prazo(Double,Integer)"
+});
+formatter.result({
+  "duration": 540934,
+  "status": "passed"
+});
+formatter.match({
+  "location": "CalcularFreteTempoSteps.o_resultado_foi_salvo_no_banco()"
+});
+formatter.result({
+  "duration": 69200282,
+  "status": "passed"
+});
 });
