@@ -45,14 +45,6 @@ public class BuscarEnderecoSteps {
 
 	@Then("^retorna o endereco (.*)$")
 	public void retorna_o_endereco(String endereco) throws Throwable {
-		/*verify(1,postRequestedFor(urlMatching("/viacep/ws/01001000/json/"))
-	            .withRequestBody(matching("{\"cep\": \"01001-000\",\"logradouro\": \"Praça da Sé\",\"complemento\": \"lado ímpar\",\"bairro\": \"Sé\",\"localidade\": \"São Paulo\",\"uf\": \"SP\",\"unidade\": \"\",\"ibge\": \"3550308\",\"gia\": \"1004\"}"))
-	            .withHeader("Content-Type", notMatching("application/json"))
-	            );*/
-		//verify(1,getRequestedFor(urlEqualTo("/viacep/ws/01001000/json/"))
-	            //.withRequestBody(matching("{\"cep\": \"01001-000\",\"logradouro\": \"Praça da Sé\",\"complemento\": \"lado ímpar\",\"bairro\": \"Sé\",\"localidade\": \"São Paulo\",\"uf\": \"SP\",\"unidade\": \"\",\"ibge\": \"3550308\",\"gia\": \"1004\"}"))
-	            //.withHeader("Content-Type", notMatching("application/json"))
-	      //      );
 		assertEquals(endereco, operacoes.getResultadoEndereco());
 		
 	}
@@ -67,7 +59,6 @@ public class BuscarEnderecoSteps {
 	                .withBody("{\"erro\":\"400\"}")));
 	    
 	    operacoes.buscarEndereco(cep);
-	    //while(1==1);
 	}
 	
 	@Then("^retorna a mensagem de erro (.*)$")
@@ -81,13 +72,12 @@ public class BuscarEnderecoSteps {
 	    stubFor(get(urlEqualTo("/viacep/ws/" + cep + "/json/"))
 	            .willReturn(aResponse()
 	                .withFault(Fault.EMPTY_RESPONSE)
-	                .withHeader("Content-Type", "application/json")
-	                .withBody("{servico:offline}")));
+	                ));
 	    
 	    operacoes.buscarEndereco(cep);
 	}
 
-	@Then("^retorna a mensagem (.*)$")
+	@Then("^retorna a mensagem de offline (.*)$")
 	public void retorna_a_mensagem_de_servico_offline(String mensagem)throws Throwable{
 		assertEquals(mensagem, operacoes.getResultadoEndereco());
 	}

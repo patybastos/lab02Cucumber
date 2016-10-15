@@ -37,6 +37,7 @@ public class Operacoes {
 	
 	private String resultadoEndereco = "";
 	private String resultadoStatusEntrega = "";
+	private String resultadoConsultaPrazoEntrega = "";
 	private static List<String> listaTags;
 	private Double preco = 0.0;
 	private Integer prazo = 0;
@@ -49,10 +50,10 @@ public class Operacoes {
 		this.dao = dao;
 	}
 	
-	public void calcularFreteTempo(int peso, int altura, int largura, int comprimento, int tipoEntrega, int cep)throws Throwable
+	public void calcularFreteTempo(Integer peso, Integer altura, Integer largura, Integer comprimento, Integer tipoEntrega, Integer cep)throws Throwable
 	{
 		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet request = new HttpGet("http://localhost:8089/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo?nVlPeso=1&nVlComprimento=20&nVlAltura=5&nVlLargura=12&nCdServico=41106");
+		HttpGet request = new HttpGet("http://localhost:8089/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo?nVlPeso="+peso+"&nVlComprimento="+comprimento+"&nVlAltura="+altura+"&nVlLargura="+largura+"&nCdServico="+tipoEntrega+"&sCepDestino="+cep);
 
 		request.addHeader("Content-Type", "application/xml");
 
@@ -72,10 +73,20 @@ public class Operacoes {
 		
 		iteraTags(rootElement);
 		
-		preco = Double.parseDouble(listaTags.get(3));
-		prazo = Integer.parseInt(listaTags.get(4));
+		//Verifica senão existe erro
+		String erro = listaTags.get(10);
 		
-		dao.saveDadosDeEntrega(preco, prazo);
+		if (erro.equals("0")) 
+		{
+			preco = Double.parseDouble(listaTags.get(3));
+			prazo = Integer.parseInt(listaTags.get(4));
+		
+			dao.saveDadosDeEntrega(preco, prazo);
+		}
+		else
+		{
+			resultadoConsultaPrazoEntrega = responseAsString;
+		}
 	}
 	
 	public void consultarStatusEntrega(String codigoRastreio) throws Throwable
@@ -97,9 +108,15 @@ public class Operacoes {
 		
 		request.addHeader("Content-Type", "application/json");
 
-		HttpResponse response = client.execute(request);
+		try
+		{
+			HttpResponse response = client.execute(request);
+			resultadoEndereco = EntityUtils.toString(response.getEntity());
+		}
+		catch(Exception e){
+			resultadoEndereco = "{\"servico\":\"offline\"}";
+		}
 		
-		resultadoEndereco = EntityUtils.toString(response.getEntity());
 	}
 
 	public String getResultadoEndereco() {
@@ -109,7 +126,11 @@ public class Operacoes {
 	public String getResultadoStatusEntrega(){
 		return resultadoStatusEntrega;
 	}
-	
+
+	public String getResultadoConsultaPrazoEntrega(){
+		return resultadoConsultaPrazoEntrega;
+	}
+
 	public Double getPreco(){
 		return preco;
 	}
